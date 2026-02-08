@@ -3,6 +3,36 @@
 
 它专为浏览器环境设计，通过 **ECDH 密钥交换** 和 **AES-GCM 加密** 实现了端到端加密（E2EE），并内置了分片哈希校验、自动重传和断点续传逻辑，确保文件传输的安全与可靠。
 
+[![中文](https://img.shields.io/badge/中文-red?style=flat-square)](README.md)
+[![English](https://img.shields.io/badge/English-blue?style=flat-square)](docs/README_EN.md) 
+
+## 目录
+
+- [P2PTY](#p2pty)
+- [核心特性](#-核心特性)
+- [安装](#-安装)
+- [网络配置指南 (STUN/TURN)](#-网络配置指南-stunturn)
+  - [推荐 STUN 服务器列表](#推荐-stun-服务器列表)
+  - [配置示例](#配置示例)
+- [快速上手](#-快速上手)
+  - [1. 主机端 (Host / Sender)](#1-主机端-host--sender)
+  - [2. 客户端 (Peer / Receiver)](#2-客户端-peer--receiver)
+- [API 文档](#-api-文档)
+  - [配置对象 (Config)](#配置对象-config)
+  - [方法 (Methods)](#方法-methods)
+  - [事件 (Events)](#事件-events)
+- [安全性设计](#️-安全性设计)
+- [常见问题与故障排查](#-常见问题与故障排查)
+  - [1. 错误码对照表](#1-错误码对照表)
+  - [2. 常见连接问题](#2-常见连接问题)
+- [注意事项](#️-注意事项)
+- [Demo](#demo)
+- [Cloudflare Pages 部署](#-cloudflare-pages-部署)
+  - [部署配置指南](#️-部署配置指南)
+  - [配置 Cloudflare API Token](#️-配置-cloudflare-api-token解决-wrangler-认证错误)
+  - [手动部署](#️手动部署)
+- [License](#-license)
+
 ## ✨ 核心特性
 
 * 🔒 **端到端加密**：使用 ECDH (P-384) 协商密钥，AES-256-GCM 加密数据通道，拒绝中间人监听。
@@ -266,6 +296,9 @@ P2PTY 会通过 `onError` 事件抛出 `ProtocolError`，包含以下 `code`：
 项目基于Vue.js开发了一个演示站，可用于体验。
 https://p2pty.lty.qzz.io
 
+![主界面](img/z.PNG)
+![发送界面](img/f1.PNG)
+![发送界面](img/f2.PNG)
 
 你也可用在cloudflare上部署此demo项目
 ## ☁️ Cloudflare Pages 部署
