@@ -59,7 +59,7 @@ export class ProtocolError extends Error {
 const ENC = new TextEncoder();
 const DEC = new TextDecoder();
 
-class CryptoUtils {
+export class CryptoUtils {
     static async generateIdentityKeyPair() {
         return await window.crypto.subtle.generateKey(
             { name: "ECDSA", namedCurve: "P-384" }, true, ["sign", "verify"]
@@ -663,4 +663,5 @@ export class P2PTY {
              this._forceClose(code, msg);
         }
     }
+
 }
