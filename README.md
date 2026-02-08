@@ -261,6 +261,43 @@ P2PTY 会通过 `onError` 事件抛出 `ProtocolError`，包含以下 `code`：
 1. **信令服务器**：本库不包含信令服务器（Signal Server）。你需要自己搭建一个简单的 WebSocket 服务来在 Host 和 Peer 之间交换 `onSignal` 产生的数据。
 2. **ICE 服务器**：为了保证在复杂网络（如 4G/5G、对称型 NAT）下的连通率，请务必在 `iceServers` 中配置可用的 TURN 服务器。
 
+
+
+## ☁️ Cloudflare Pages 部署
+
+本项目支持使用 **Cloudflare Pages** 进行一键部署。
+
+点击下方按钮，系统将引导您授权 GitHub，并将本项目克隆到您的 Cloudflare 账号中自动构建：
+
+[![Deploy to Cloudflare Pages](https://img.shields.io/badge/Deploy%20to-Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://deploy.workers.cloudflare.com/?url=https://github.com/Sparklewink/p2pty)
+
+### ⚠️ 关键配置说明
+
+由于本项目采用了 Monorepo 结构，在一键部署的配置向导中，您 **必须手动修改** 构建设置，否则会导致构建失败。
+
+请在 **Set up builds and deployments** (构建配置) 页面中，参照下表修改：
+
+| 配置项 (Field) | 填写内容 (Value) | 重要性 |
+| --- | --- | --- |
+| **Framework preset** | `Vue` | 推荐 |
+| **Build command** | `npm run build` | 默认 |
+| **Build output directory** | `dist` | 默认 |
+| **Root directory** | `transfer` | 手动修改|
+
+> **注意**：请务必将 `Root directory`设置为 `transfer`，这样 Cloudflare 才会正确进入子目录进行构建。
+
+---
+
+### 💡 手动部署方法 (备选)
+
+如果您无法使用上方的一键部署按钮，可以按照以下步骤手动操作：
+
+1. **Fork** 本仓库到您的 GitHub 账号。
+2. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com/)，进入 **Workers & Pages** -> **Create application** -> **Pages** -> **Connect to Git**。
+3. 选择您刚刚 Fork 的 `p2pty` 仓库。
+4. 在 **Build settings** 步骤中，严格按照上方表格填写配置（**切记将 Root directory 填为 `transfer**`）。
+5. 点击 **Save and Deploy** 即可。
+
 ## 📄 License
 
 Apache-2.0
