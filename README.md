@@ -279,6 +279,65 @@ P2PTY 会通过 `onError` 事件抛出 `ProtocolError`，包含以下 `code`：
 | **路径** (Path) | `/` | 保持默认即可 |
 
 
+### ⚙️ 配置 Cloudflare API Token（解决 wrangler 认证错误）
+
+项目使用 Cloudflare Pages 自动构建 + wrangler 部署时，如果出现类似以下错误：
+
+```
+Authentication error [code: 10000]
+Please ensure it has the correct permissions for this operation.
+```
+
+说明 wrangler 缺少足够的 API 权限。请按以下步骤创建并配置专用的 API Token：
+
+1. 登录 Cloudflare 仪表盘：https://dash.cloudflare.com  
+   点击右上角头像 → **My Profile** → **API Tokens**（或直接访问：https://dash.cloudflare.com/profile/api-tokens）
+
+2. 点击 **Create Token**（创建令牌）
+
+3. 选择 **Create Custom Token**（自定义令牌）或使用模板后修改：
+   - Token 名称：建议填 `p2pty-pages-deploy-token`（便于识别）
+   - **Permissions**（权限） - 添加以下至少一项（推荐全选以防万一）：
+     - **Account** → **Cloudflare Pages** → **Edit**（**必须**，否则 10000 错误）
+     - **Account** → **Workers Scripts** → **Edit**（推荐，wrangler 常用）
+     - **User** → **User Details** → **Read**（可选，但保险）
+   - **Account Resources**（账号范围）：
+     - 选择 **All accounts**（包含所有账号），或明确选中你的账号（ID: 2982c212c4ac2c12419559409eed8b24）
+   - **Zone Resources**：**None**（Pages 项目不需要 Zone 权限）
+
+4. 点击 **Continue to summary** → **Create Token**  
+   → 立即复制生成的 **Token 值**（只显示一次，丢失需重新创建）
+
+5. 回到你的 Cloudflare Pages 项目（https://dash.cloudflare.com → Pages → 你的项目 p2pty-transfer）：
+   - 点击 **Settings** → **Environment variables**（环境变量）
+   - 添加变量：
+     - **变量名称**：`CLOUDFLARE_API_TOKEN`（必须全大写）
+     - **值**：粘贴刚才复制的 Token
+     - **类型**：选择 **Encrypted**（加密，推荐）
+   - 保存
+
+6. 触发重新部署：
+   - 在 Pages 项目页面点击 **Deployments** → 找到最新失败的构建 → 点击 **Retry deployment**  
+     或 push 一个空 commit（`git commit --allow-empty -m "trigger redeploy"`）来重新触发
+
+完成后，wrangler 就能正常调用 Cloudflare API 完成 `npx wrangler pages deploy transfer/dist` 步骤。
+
+### ☁️手动部署
+  1.或者，fork本仓库
+  
+  2.登录 Cloudflare 仪表盘：https://dash.cloudflare.com  
+  
+  3.计算和AI -> Workers and Pages
+  
+  4.创建部署 -> 创建Pages
+  
+  5.导入现有 Git 存储库
+  
+  6.选择本项目
+  
+  7.构建命令(Build Command) -> `cd transfer && npm install && npm run build`
+
+
 ## 📄 License
 
 Apache-2.0
