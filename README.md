@@ -261,7 +261,13 @@ P2PTY 会通过 `onError` 事件抛出 `ProtocolError`，包含以下 `code`：
 1. **信令服务器**：本库不包含信令服务器（Signal Server）。你需要自己搭建一个简单的 WebSocket 服务来在 Host 和 Peer 之间交换 `onSignal` 产生的数据。
 2. **ICE 服务器**：为了保证在复杂网络（如 4G/5G、对称型 NAT）下的连通率，请务必在 `iceServers` 中配置可用的 TURN 服务器。
 
+## ⚡Demo
 
+项目基于Vue.js开发了一个演示站，可用于体验。
+https://p2pty.lty.qzz.io
+
+
+你也可用在cloudflare上部署此demo项目
 ## ☁️ Cloudflare Pages 部署
 
 本项目支持使用 Cloudflare 一键部署。点击下方按钮即可开始：
