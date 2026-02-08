@@ -246,7 +246,7 @@ P2PTY 会通过 `onError` 事件抛出 `ProtocolError`，包含以下 `code`：
 
 #### Q: 报错 `must provide 'iceServers'`？
 
-**A:** 从 v1.0 版本开始，P2PTY 不再内置默认 STUN 服务器。你必须在初始化时显式传入 `iceServers` 数组。
+**A:** P2PTY 不内置默认 STUN 服务器。你必须在初始化时显式传入 `iceServers` 数组。
 
 #### Q: 传输大文件时内存占用过高？
 
