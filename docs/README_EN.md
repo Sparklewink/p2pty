@@ -220,19 +220,19 @@ P2PTY achieves secure and reliable P2P file transfer between browsers through **
 
 ### Overall Architecture
 
-![P2PTY Overall Architecture](img/jg1.png)
+![P2PTY Overall Architecture](../img/jg1.png)
 
 ### Connection Handshake Process
 
-![Handshake Process](img/jg2.png)
+![Handshake Process](../img/jg2.png)
 
 ### File Transfer and Integrity Verification Process
 
-![File Transfer Process](img/jg3.png)
+![File Transfer Process](../img/jg3.png)
 
 ### Core Security Design
 
-![Key Security Design Points](img/jg4.png)
+![Key Security Design Points](../img/jg4.png)
 
 ## ❓ FAQ & Troubleshooting
 Refer to the following error codes and solutions if issues arise during development or testing.
@@ -273,9 +273,9 @@ P2PTY throws `ProtocolError` via `onError` event with the following `code`:
 A Vue.js-based demo site is available for testing:  
 https://p2pty.lty.qzz.io
 
-![Main Interface](img/z.PNG)  
-![Sending Interface 1](img/f1.PNG)  
-![Sending Interface 2](img/f2.PNG)
+![Main Interface](../img/z.PNG)  
+![Sending Interface 1](../img/f1.PNG)  
+![Sending Interface 2](../img/f2.PNG)
 
 You can also deploy this demo on Cloudflare.
 
