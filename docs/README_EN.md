@@ -20,6 +20,7 @@ Designed specifically for browser environments, it achieves **end-to-end encrypt
   - [Methods](#methods)
   - [Events](#events)
 - [Security Design](#️-security-design)
+- [Principles and Architecture](#-Principles-and-Architecture)
 - [FAQ & Troubleshooting](#-faq--troubleshooting)
   - [1. Error Code Reference](#1-error-code-reference)
   - [2. Common Connection Issues](#2-common-connection-issues)
@@ -212,6 +213,26 @@ Listen using `p2p.on('eventName', callback)`.
 4. **Data Integrity**:
    - **Per-chunk**: Each 16MB chunk computes independent SHA-256; receiver verifies in real time.
    - **File-level**: Final full-file SHA-256 hash comparison ensures 100% accuracy.
+  
+## 📝Principles and Architecture
+
+P2PTY achieves secure and reliable P2P file transfer between browsers through **WebRTC data channel** + **strong authentication and key negotiation** + **application-layer fragmentation verification**.
+
+### Overall Architecture
+
+![P2PTY Overall Architecture](img/jg1.png)
+
+### Connection Handshake Process
+
+![Handshake Process](img/jg2.png)
+
+### File Transfer and Integrity Verification Process
+
+![File Transfer Process](img/jg3.png)
+
+### Core Security Design
+
+![Key Security Design Points](img/jg4.png)
 
 ## ❓ FAQ & Troubleshooting
 Refer to the following error codes and solutions if issues arise during development or testing.
